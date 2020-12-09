@@ -15,6 +15,7 @@ def index():
 	
 # Find one record of data from the mongo database
 	mars = mongo.db.collection.find_one()
+	print(mars)
 	return render_template("index.html", mars=mars)
 
 @app.route('/scrape')
@@ -22,7 +23,8 @@ def scrape():
 	
 	# Run the scrape function
 	mars_data = scrape_mars.scrape_info()
-	
+
+
 	# Update the Mongo database using update and upsert=True
 	mongo.db.collection.update({}, mars_data, upsert=True)
 

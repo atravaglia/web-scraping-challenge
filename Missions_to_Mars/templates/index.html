@@ -19,8 +19,8 @@
     <div class="container-fluid news no-padding" id="scraped-data">  
       <div class="row no-gutter">
         <div class="card-body">
-          <h5 class="card-title" id="font">Latest Mars News</h5> 
-          <h6 class="card-subtitle mb-2 " id="font">{{ mars.title }}</h6>
+          <h3 class="card-title" id="font">Latest Mars News</h3> 
+          <h3 class="card-subtitle mb-2 " id="font">{{ mars.title }}</h3>
           <p class="card-text">{{ mars.para }}</p>
           <a href={{ mars.url }} target="_blank">Click Here to Check More News on Mars</a>
         </div>
@@ -30,7 +30,7 @@
         <div class="col-md-6" >
           <div class="card">
             <div class="card-body" id="img-table">
-              <h5 class="card-title">Featured Mars Image</h5>
+              <h3 class="card-title">Featured Mars Image</h3>
               <p class="card-text" id="dark-font">{{ mars.featured_image_title }}</p>
               <img class="card-img-bottom" src="{{ mars.featured_url }}" alt="Featured Mars Image">
               <a href={{ mars.jpl_url }} target="_blank">Check All Images</a>
@@ -55,15 +55,15 @@
     <div class ="row" id="mars-hemispheres">
     <div class = "col-md-12">
         <h3><center>Mars Hemispheres</center></h3>
-        {% for hemisphere in mars.hem_img_urls %}
+        {% for hemisphere in mars.hem_imge_urls %}
             <div class = "col-md-6">
                 <div class = "thumbnail">
-                    <img src = "{{hem_img_urls}}">
-                        <h3>{{hemisphere.title}}</h3>
+                    <img src = "{{ hemisphere }}">
+                    <h3><b>{{hemisphere.title}}</b></h3>
                     </div>
                 </div>
         {% endfor %}
-            </div> -->
+            </div> 
     
     </div>
    

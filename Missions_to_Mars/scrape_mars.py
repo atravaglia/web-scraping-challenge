@@ -20,8 +20,9 @@ def scrape_info():
     browser.visit(url)
     html = browser.html
     bs1 = bs(html,'html.parser')
-    title = bs1.find("div",class_="content_title").text
-    para = bs1.find("div", class_="rollover_description_inner").text
+    list_text = bs1.find("div",class_="list_text")
+    title = list_text.find("div", class_="content_title").text
+    para = bs1.find("div", class_="article_teaser_body").text
 
 # JPL Mars Space Images - Featured Image
     jpl_url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
@@ -44,23 +45,25 @@ def scrape_info():
     browser.visit(hemi_hurl)  
     hemi_html = browser.html 
     mh_soup = bs(hemi_html,"html.parser") 
-    results = mh_soup.find_all("div",class_='item')
+    results = mh_soup.find_all(attrs = {"class" : "thumb"})
     hem_img_urls = []
     for result in results:
+        image_url2 = result["src"]
+        # image_url2 = image_url2.replace("/cache","")
         dictionary = {}
-        result_title = result.find('h3').text
-        end_link = result.find("a")["href"]
-        image_link = "https://astrogeology.usgs.gov/" + end_link    
-        browser.visit(image_link)
-        html = browser.html
-        soup = bs(html, "html.parser")
-        downloads = soup.find("div", class_="downloads")
-        image_url = downloads.find("a")["href"]
-        print(result_title)
-        print(image_url)
-        dictionary['title']= result_title
-        dictionary['image_url']= image_url
-        hem_img_urls.append(dictionary)
+        # result_title = result.find('h3').text
+        # end_link = result.find("a")["href"]
+        image_link = "https://astrogeology.usgs.gov"    
+        # browser.visit(image_link)
+        # html = browser.html
+        # soup = bs(html, "html.parser")
+        # downloads = soup.find("div", class_="downloads")
+        # image_url = downloads.find("a")["href"]
+        # print(result_title)
+        # print(image_url)
+        # dictionary['title']= result_title
+        # dictionary['image_url']= image_url
+        hem_img_urls.append( image_link+image_url2)
 
 
 
